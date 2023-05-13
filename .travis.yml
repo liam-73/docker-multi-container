@@ -14,3 +14,10 @@ after_success:
   - docker build -t liam-37/multi-nginx ./nginx
   - docker build -t liam-37/multi-server ./server
   - docker build -t liam-37/multi-worker ./worker
+  # login to the docker hub
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # push images to docker hub
+  - docker push liam-37/multi-client
+  - docker push liam-37/multi-nginx
+  - docker push liam-37/multi-server
+  - docker push liam-37/multi-worker
